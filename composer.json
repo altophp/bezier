@@ -23,10 +23,10 @@
             "email": "smn.andre@gmail.com"
         }
     ],
-    "homepage": "https://github.com/phpalto/bezier",
+    "homepage": "https://github.com/altophp/bezier",
     "support": {
-        "issues": "https://github.com/phpalto/bezier/issues",
-        "docs": "https://github.com/phpalto/bezier#readme"
+        "issues": "https://github.com/altophp/bezier/issues",
+        "docs": "https://github.com/altophp/bezier#readme"
     },
     "funding": [
         {
