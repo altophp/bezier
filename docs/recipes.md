@@ -1,49 +1,81 @@
-# Practical Recipes
+# Recipes
 
-## Converting from SVG Paths
+These recipes combine the shared curve operations into common application
+tasks.
+
+## Import an SVG segment
+
+SVG quadratic and cubic path segments map directly to their dedicated curve
+classes. A cubic segment needs the current path position, two controls, and the
+segment end:
 
 ```php
-use Alto\Bezier\Point;
 use Alto\Bezier\CubicCurve;
+use Alto\Bezier\Point;
 
-function fromSvgCommand(array $cmd): CubicCurve {
-    return new CubicCurve(
-        new Point($cmd['x1'], $cmd['y1']),
-        new Point($cmd['c1x'], $cmd['c1y']),
-        new Point($cmd['c2x'], $cmd['c2y']),
-        new Point($cmd['x2'], $cmd['y2']),
-    );
-}
+$curve = new CubicCurve(
+    new Point($currentX, $currentY),
+    new Point($control1X, $control1Y),
+    new Point($control2X, $control2Y),
+    new Point($endX, $endY),
+);
 ```
 
-Map your own SVG parser output into the provided curve classes.
+SVG does not provide native quartic, quintic, or arbitrary-degree path
+commands. Sample those curves or convert them to segments supported by the
+target renderer.
 
-## Evenly Spaced Points for Animation
+## Animate at constant speed
+
+Equal steps in `t` do not usually represent equal distances. Calculate the
+length once, then request positions by distance:
 
 ```php
+$samples = 200;
+$frameCount = 20;
+$length = $curve->length($samples);
 $frames = [];
-$total = $curve->length();
-$step = $total / 20;
-for ($d = 0; $d <= $total; $d += $step) {
-    $frames[] = $curve->pointAtDistance($d);
+
+for ($frame = 0; $frame <= $frameCount; ++$frame) {
+    $distance = $length * $frame / $frameCount;
+    $frames[] = $curve->pointAtDistance($distance, $samples);
 }
 ```
 
-Use arc-length sampling to keep motion speed constant.
+The first and last entries are the curve endpoints. Intermediate entries are
+approximately equally spaced along the path.
 
-## Collision Checks
+## Reject distant curves before intersecting
+
+Intersection detection already checks bounds during subdivision. An
+application comparing many curves can reject non-overlapping pairs first:
 
 ```php
-if ($curve->boundingBox()->maxX() < $other->boundingBox()->minX()) {
-    return false; // quick reject
-}
-return !empty($curve->intersections($other));
+$a = $curve->boundingBox();
+$b = $otherCurve->boundingBox();
+
+$separate = $a->maxX() < $b->minX()
+    || $b->maxX() < $a->minX()
+    || $a->maxY() < $b->minY()
+    || $b->maxY() < $a->minY();
+
+$hits = $separate ? [] : $curve->intersections($otherCurve);
 ```
 
-Combine cheap bounding box tests with detailed intersection checks.
+## Fit a curve into a viewport
 
-## Numerical Stability Tips
+Use the bounding box to derive a translation and scale for a renderer:
 
-- Keep coordinates in similar ranges to reduce floating-point error.
-- Increase sampling counts for `length()` and `boundingBox()` when curves fold tightly.
-- Handle `InvalidArgumentException` when supplying dynamic input.
+```php
+$box = $curve->boundingBox();
+$scale = min(
+    $viewportWidth / $box->width(),
+    $viewportHeight / $box->height(),
+);
+
+$offsetX = -$box->minX() * $scale;
+$offsetY = -$box->minY() * $scale;
+```
+
+Handle zero-width or zero-height boxes before dividing when a curve can be
+degenerate or perfectly horizontal or vertical.

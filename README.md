@@ -79,6 +79,11 @@ $path = sprintf(
 - **Bounding boxes and grids**: `boundingBox()` exposes width/height/corners, and `points($interval)` streams evenly
   spaced points for tessellation or hit-testing.
 
+## Documentation
+
+Read the [Alto Bezier documentation](https://altophp.com/bezier) for installation, curve types, operations, and
+recipes.
+
 ## Testing
 
 ```bash
