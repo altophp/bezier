@@ -81,8 +81,12 @@ $path = sprintf(
 
 ## Documentation
 
-Read the [Alto Bezier documentation](https://altophp.com/bezier) for installation, curve types, operations, and
-recipes.
+- [Documentation home](docs/index.md)
+- [Installation](docs/installation.md)
+- [Getting started](docs/getting-started.md)
+- [Curves](docs/curves.md)
+- [Operations](docs/operations.md)
+- [Recipes](docs/recipes.md)
 
 ## Testing
 

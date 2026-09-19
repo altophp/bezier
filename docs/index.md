@@ -7,21 +7,12 @@ generic curve for any number of control points.
 Use the dedicated curve pages to choose the right representation. The shared
 operations work the same way across every curve type.
 
-## Introduction
+## Documentation
 
-- [Installation](installation.md)
-- [Getting started](getting-started.md)
-
-## Curves
-
-- [All curves](curves/index.md)
-- [Quadratic](curves/quadratic.md)
-- [Cubic](curves/cubic.md)
-- [Quartic](curves/quartic.md)
-- [Quintic](curves/quintic.md)
-- [N-order](curves/n-order.md)
-
-## Usage
-
-- [Operations](operations.md)
-- [Recipes](recipes.md)
+- [Installation](installation.md): install the package and verify the setup.
+- [Getting started](getting-started.md): evaluate, measure, and split a first curve.
+- [Curves](curves.md): choose a curve type and create its control points.
+- [Operations](operations.md): evaluate, sample, split, measure, and intersect
+  curves.
+- [Recipes](recipes.md): combine operations for SVG, animation, and rendering
+  tasks.

@@ -3,8 +3,9 @@
 A Bézier curve is defined by its control points. The parameter `t` identifies a
 position along the curve: `0` is the start and `1` is the end.
 
-The following example creates a cubic curve, evaluates its midpoint, measures
-its approximate length, and splits it into two curves:
+After [installation](installation.md), save this script as `curve.php` beside
+`vendor/` and run `php curve.php`. It creates a cubic curve, evaluates its
+midpoint, measures its approximate length, and splits it into two curves:
 
 ```php
 <?php
@@ -38,8 +39,13 @@ Approximate length: 276.51
 Split joins at: (100, 60)
 ```
 
+![Cubic curve with its four control points and evaluated midpoint](assets/first-curve.svg)
+
+The blue curve uses the example's control points; the dashed polygon joins
+those controls. The orange point is `pointAt(0.5)`, not the halfway distance.
+
 The split curves meet at the original midpoint. Increasing the sample count
 improves the numerical length approximation at the cost of more work.
 
-Next, [choose a curve type](curves/index.md) or explore the [operations shared
+Next, [choose a curve type](curves.md) or explore the [operations shared
 by every curve](operations.md).
