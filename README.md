@@ -88,14 +88,34 @@ $path = sprintf(
 - [Operations](docs/operations.md)
 - [Recipes](docs/recipes.md)
 
-## Testing
+## Contributing
+
+Contributions of all kinds are welcome. Visit the
+[project on GitHub](https://github.com/altophp/bezier) to
+[report a bug](https://github.com/altophp/bezier/issues/new),
+[suggest a feature](https://github.com/altophp/bezier/issues/new), or
+[open a pull request](https://github.com/altophp/bezier/pulls).
+
+Before submitting code, run:
 
 ```bash
-composer install
-vendor/bin/phpstan analyse
-vendor/bin/phpunit
+# Runs PHP CS Fixer, PHPStan, and PHPUnit
+composer qa
 ```
+
+Changes to public behavior should include tests and documentation.
+
+## Support
+
+ALTO Bezier is open source and independently maintained by
+[Simon André](https://smnandre.dev). If it is useful to your work, you can
+support its continued development through
+[GitHub Sponsors](https://github.com/sponsors/smnandre).
+
+Sharing the package or
+[starring it on GitHub](https://github.com/altophp/bezier) also helps.
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE).
+ALTO Bezier is released by [ALTO PHP](https://altophp.com) under the
+[MIT License](LICENSE).
