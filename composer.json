@@ -23,10 +23,11 @@
             "email": "smn.andre@gmail.com"
         }
     ],
-    "homepage": "https://github.com/altophp/bezier",
+    "homepage": "https://altophp.com/bezier",
     "support": {
         "issues": "https://github.com/altophp/bezier/issues",
-        "docs": "https://github.com/altophp/bezier#readme"
+        "source": "https://github.com/altophp/bezier",
+        "docs": "https://altophp.com/bezier"
     },
     "funding": [
         {
@@ -52,14 +53,18 @@
             "Alto\\Bezier\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
-        "cs": "vendor/bin/php-cs-fixer fix",
+        "cs": "vendor/bin/php-cs-fixer fix --dry-run --diff --sequential",
+        "cs:fix": "vendor/bin/php-cs-fixer fix --sequential",
         "qa": [
             "@cs",
             "@sa",
             "@test"
         ],
-        "sa": "vendor/bin/phpstan analyse",
+        "sa": "vendor/bin/phpstan analyse --memory-limit=-1",
         "test": "vendor/bin/phpunit"
     }
 }
