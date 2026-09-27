@@ -1,24 +1,11 @@
-# Alto Bezier
+<h1 align="center">
+  <a href="https://altophp.com/bezier">
+    <img src=".github/alto-bezier.svg" alt="ALTO Bezier">
+  </a>
+</h1>
 
 Alto\Bezier is a precision PHP toolkit for evaluating, splitting, and measuring quadratic, cubic, quintic, and
 N-order Bézier curves using immutable value objects and a numerically stable De Casteljau core.
-
-## Features
-
-- Quadratic, cubic, quartic, quintic, and arbitrary N-order curves that all share the same API
-- Point evaluation: `pointAt(t)` and constant-speed `pointAtDistance(distance)` helpers
-- Curve subdivision with `split(t)` for tessellation or editing workflows
-- Differential geometry helpers: derivatives, tangents, normals
-- Arc-length calculation and arc-length parameterization with configurable sampling
-- Intersection detection between any two curves
-- Bounding boxes and evenly spaced point generators for export to SVG, canvas, or WebGL
-- Immutable, readonly classes with no external dependencies
-
-## Installation
-
-```bash
-composer require alto/bezier
-```
 
 ## Usage
 
@@ -66,6 +53,23 @@ $path = sprintf(
     'M %s C %s %s %s',
     ...array_map(fn(Point $p) => $p->x.' '.$p->y, $curve->toArray())
 );
+```
+
+## Features
+
+- Quadratic, cubic, quartic, quintic, and arbitrary N-order curves that all share the same API
+- Point evaluation: `pointAt(t)` and constant-speed `pointAtDistance(distance)` helpers
+- Curve subdivision with `split(t)` for tessellation or editing workflows
+- Differential geometry helpers: derivatives, tangents, normals
+- Arc-length calculation and arc-length parameterization with configurable sampling
+- Intersection detection between any two curves
+- Bounding boxes and evenly spaced point generators for export to SVG, canvas, or WebGL
+- Immutable, readonly classes with no external dependencies
+
+## Installation
+
+```bash
+composer require alto/bezier
 ```
 
 ## Advanced
